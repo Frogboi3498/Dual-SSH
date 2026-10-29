@@ -1,0 +1,59 @@
+{
+  "name": "dual-ssh",
+  "version": "1.0.0",
+  "description": "SSH terminals for up to 4 servers side by side",
+  "author": "Dual SSH",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist:mac": "electron-builder --mac --publish never",
+    "dist:win": "electron-builder --win --publish never"
+  },
+  "dependencies": {
+    "@xterm/addon-fit": "^0.10.0",
+    "@xterm/xterm": "^5.5.0",
+    "ssh2": "^1.16.0"
+  },
+  "devDependencies": {
+    "electron": "33.4.11",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.local.dualssh",
+    "productName": "Dual SSH",
+    "copyright": "Dual SSH",
+    "directories": { "output": "dist" },
+    "npmRebuild": false,
+    "afterPack": "./afterPack.js",
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**/*",
+      "package.json",
+      "icon-light.png",
+      "icon-dark.png",
+      "!**/*.node",
+      "!node_modules/cpu-features/**",
+      "!node_modules/ssh2/lib/protocol/crypto/build/**"
+    ],
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "identity": null,
+      "icon": "icon-dark.png",
+      "target": [
+        "dmg"
+      ],
+      "artifactName": "DualSSH-${version}-${arch}.${ext}"
+    },
+    "win": {
+      "target": [{ "target": "nsis", "arch": ["x64"] }],
+      "artifactName": "DualSSH-Setup-${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    }
+  }
+}
