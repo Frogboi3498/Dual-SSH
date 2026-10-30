@@ -1,12 +1,12 @@
 {
   "name": "dual-ssh",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "SSH terminals for up to 4 servers side by side",
   "author": "Dual SSH",
   "main": "main.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com"
+    "url": "https://github.com/Frogboi3498/Dual-SSH.git"
   },
   "scripts": {
     "start": "electron .",
@@ -26,7 +26,9 @@
     "appId": "com.local.dualssh",
     "productName": "Dual SSH",
     "copyright": "Dual SSH",
-    "directories": { "output": "dist" },
+    "directories": {
+      "output": "dist"
+    },
     "npmRebuild": false,
     "afterPack": "./afterPack.js",
     "files": [
@@ -50,7 +52,14 @@
       "artifactName": "DualSSH-${version}-${arch}.${ext}"
     },
     "win": {
-      "target": [{ "target": "nsis", "arch": ["x64"] }],
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
       "artifactName": "DualSSH-Setup-${version}.${ext}"
     },
     "nsis": {
