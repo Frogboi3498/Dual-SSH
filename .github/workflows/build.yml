@@ -2,10 +2,10 @@ name: Build and Release App
 
 on:
   push:
-    tags: ['v*'] # Triggers automatically when you push a tag like v1.0.0
+    tags: ['v*']
 
 permissions:
-  contents: write # Crucial: Allows Actions to create a draft release and upload binaries
+  contents: write
 
 jobs:
   release:
@@ -28,14 +28,12 @@ jobs:
         run: npm install --ignore-scripts
 
       - name: Compile and Ship to GitHub Releases
-        # This will execute the dist scripts we updated in step 1
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           if [ "$RUNNER_OS" == "macOS" ]; then
             npm run dist:mac
           else
             npm run dist:win
-          }
-        shell: bash
-        env:
-          # Passes authentication context allowing electron-builder to upload directly
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+          fi
