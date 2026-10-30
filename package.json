@@ -4,10 +4,14 @@
   "description": "SSH terminals for up to 4 servers side by side",
   "author": "Dual SSH",
   "main": "main.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com"
+  },
   "scripts": {
     "start": "electron .",
-    "dist:mac": "electron-builder --mac --publish never",
-    "dist:win": "electron-builder --win --publish never"
+    "dist:mac": "electron-builder --mac --publish always",
+    "dist:win": "electron-builder --win --publish always"
   },
   "dependencies": {
     "@xterm/addon-fit": "^0.10.0",
